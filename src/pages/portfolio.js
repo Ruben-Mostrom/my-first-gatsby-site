@@ -22,17 +22,21 @@ const PortfolioPage = () => {
 
   return (
     <Layout>
-      <h1>Välkommen till min portfolio!</h1>
-      <ul>
-        {items.map((item) => (
-          <li key={item.slug}>
-            <Link to={`/portfolio/${item.slug}`}>
-              <h2>{item.title}</h2>
-            </Link>
-            {item.description?.raw && <div>{renderRichText(item.description)}</div>}
-          </li>
-        ))}
-      </ul>
+      <div className="content">
+        <div className="max-w-4xl mx-auto px-4 py-12">
+          <h1 className="text-4xl font-bold mb-6 text-center text-white">Välkommen till min portfolio!</h1>
+          <ul>
+            {items.map((item) => (
+              <li key={item.slug}>
+                <Link to={`/portfolio/${item.slug}`}>
+                  <h2>{item.title}</h2>
+                </Link>
+                {item.description?.raw && <div>{renderRichText(item.description)}</div>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </Layout>
   );
 };

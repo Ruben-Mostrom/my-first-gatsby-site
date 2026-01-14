@@ -22,33 +22,35 @@ const Layout = ({ children }) => {
   return (
     <div className={container}>
       <header>
-        <div>
+        <nav className="bg-gray-900 px-6 py-4 w-screen">
+          <ul className="flex gap-6 justify-center">
+            {menuItems.map((item) => (
+              <li key={item.order}>
+                <Link
+                  to={item.page.slug === '/' || item.page.slug === '' ? '/' : `/${item.page.slug}`}
+                  className="text-gray-300 hover:text-white transition-colors duration-200"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="w-full">
           <StaticImage
-            src="../images/loggan.png"
+            src="../images/banner.jpg"
             alt="Rubens logotyp"
             placeholder="blurred"
-            layout="constrained"
-            width={600}
+            layout="fullWidth"
+            className="md:h-15"
+            imgClassName="object-cover"
           />
-
-          <h1>Här är min header</h1>
         </div>
       </header>
-
-      <nav>
-        <ul>
-          {menuItems.map((item) => (
-            <li key={item.order}>
-              <Link to={item.page.slug === '/' || item.page.slug === '' ? '/' : `/${item.page.slug}`}>
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <main>{children}</main>
-      <footer>Här lägger vi till en footer</footer>
+      <body>
+        <main>{children}</main>
+      </body>
+      <footer></footer>
     </div>
   );
 };

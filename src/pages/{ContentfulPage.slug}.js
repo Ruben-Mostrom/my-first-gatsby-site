@@ -7,14 +7,22 @@ import PortfolioPage from './portfolio';
 const Page = ({ data }) => {
   const page = data.contentfulPage;
 
+  // Render portfolio page separately
   if (page.slug === 'portfolio') {
     return <PortfolioPage />;
   }
 
   return (
     <Layout>
-      <h1>{page.title}</h1>
-      {page.body && <div>{renderRichText(page.body)}</div>}
+      <div className="content">
+        <div className="max-w-4xl mx-auto px-4 py-12">
+          {/* Page title */}
+          <h1 className="text-4xl font-bold mb-6 text-center text-white">{page.title}</h1>
+
+          {/* Page body */}
+          {page.body && <div className="prose prose-lg max-w-full mx-auto text-white">{renderRichText(page.body)}</div>}
+        </div>
+      </div>
     </Layout>
   );
 };
@@ -34,8 +42,6 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => {
-  if (data.contentfulPage.slug === 'portfolio') {
-    return <title>Portfolio</title>;
-  }
-  return <title>{data.contentfulPage.title}</title>;
+  const title = data.contentfulPage.slug === 'portfolio' ? 'Portfolio' : data.contentfulPage.title;
+  return <title>{title}</title>;
 };
