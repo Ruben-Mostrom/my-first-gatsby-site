@@ -20,7 +20,7 @@ p {
 .content {
   max-width: 768px;
   margin: 0 auto;
-  padding: 4rem 1rem;
+  padding: 2rem 1rem;
   color: white;
   font-family: system-ui, sans-serif;
   line-height: 1.9;
@@ -63,11 +63,4 @@ p {
 
 .content li {
   margin-bottom: 0.75rem;
-}
-
-.content img {
-  margin: 2rem 0;
-  border-radius: 0.5rem;
-  width: 100%;
-  display: block;
 }

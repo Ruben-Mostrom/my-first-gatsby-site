@@ -19,10 +19,12 @@ const Layout = ({ children }) => {
   `);
 
   const menuItems = data.allContentfulMenuItem.nodes;
+
   return (
-    <div className={container}>
+    <div className="flex flex-col min-h-screen">
+      {/* Header */}
       <header>
-        <nav className="bg-gray-900 px-6 py-4 w-screen">
+        <nav className="bg-gray-900 px-6 py-4 w-full">
           <ul className="flex gap-6 justify-center">
             {menuItems.map((item) => (
               <li key={item.order}>
@@ -47,10 +49,14 @@ const Layout = ({ children }) => {
           />
         </div>
       </header>
-      <body>
-        <main>{children}</main>
-      </body>
-      <footer></footer>
+
+      {/* Main content */}
+      <main className="grow">{children}</main>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-4 text-center w-full">
+        <p>&copy; {new Date().getFullYear()} Ruben - Student at IT-Hogskolan</p>
+      </footer>
     </div>
   );
 };

@@ -15,13 +15,8 @@ const Page = ({ data }) => {
   return (
     <Layout>
       <div className="content">
-        <div className="max-w-4xl mx-auto px-4 py-12">
-          {/* Page title */}
-          <h1 className="text-4xl font-bold mb-6 text-center text-white">{page.title}</h1>
-
-          {/* Page body */}
-          {page.body && <div className="prose prose-lg max-w-full mx-auto text-white">{renderRichText(page.body)}</div>}
-        </div>
+        {/* Page body */}
+        {page.body && <div>{renderRichText(page.body)}</div>}
       </div>
     </Layout>
   );

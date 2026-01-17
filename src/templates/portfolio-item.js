@@ -3,30 +3,38 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
+import { BLOCKS } from '@contentful/rich-text-types';
 
 const PortfolioItemPage = ({ data }) => {
   const item = data.contentfulPortfolioItem;
 
+  // Options for rendering rich text, e.g., make h2 bigger
+  const options = {
+    renderNode: {
+      [BLOCKS.HEADING_2]: (node, children) => <h2 className="text-3xl md:text-4xl font-semibold my-4">{children}</h2>
+    }
+  };
+
+  const image = getImage(item.image);
+
   return (
     <Layout>
-      <h1>{item.title}</h1>
-      <p>Slug: {item.slug}</p>
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <h1 className="text-5xl font-bold mb-8 text-center">{item.title}</h1>
 
-      {item.description && <div>{renderRichText(item.description)}</div>}
-
-      {item.images?.map((img, index) => {
-        const image = getImage(img);
-        if (!image) return null;
-
-        return (
+        {/* Image on top */}
+        {image && (
           <GatsbyImage
-            key={index}
             image={image}
-            alt={img?.description || `${item.title} bild ${index + 1}`}
-            imgClassName="portfolio-image-img"
+            alt={item.image.description || `${item.title} main image`}
+            className="mb-8 rounded-lg"
+            imgClassName="block w-full"
           />
-        );
-      })}
+        )}
+
+        {/* Description below */}
+        {item.description && <div className="prose max-w-full">{renderRichText(item.description, options)}</div>}
+      </div>
     </Layout>
   );
 };
@@ -39,9 +47,9 @@ export const query = graphql`
       description {
         raw
       }
-      images {
+      image {
         description
-        gatsbyImageData(layout: CONSTRAINED, width: 800, placeholder: BLURRED)
+        gatsbyImageData(layout: CONSTRAINED, width: 2000, placeholder: BLURRED)
       }
     }
   }
