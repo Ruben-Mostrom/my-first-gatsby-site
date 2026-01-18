@@ -60,6 +60,7 @@ export const Head = () => (
   <>
     <title>Portfolio</title>
     <meta name="description" content="Portfolio"></meta>
+    <html lang="en" />
   </>
 );
 

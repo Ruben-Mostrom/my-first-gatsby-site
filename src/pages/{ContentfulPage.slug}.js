@@ -40,7 +40,7 @@ export const Head = ({ data }) => {
   const title = data.contentfulPage.slug === 'portfolio' ? 'Portfolio' : data.contentfulPage.title;
   return (
     <>
-      <title>{title}</title> <meta name="description" content={data.contentfulPage.title}></meta>
+      <title>{title}</title> <meta name="description" content={data.contentfulPage.title}></meta> <html lang="en" />
     </>
   );
 };
