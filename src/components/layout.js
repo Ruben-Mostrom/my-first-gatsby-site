@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -14,10 +15,17 @@ const Layout = ({ children }) => {
           }
         }
       }
+
+      contentfulBanner {
+        banner {
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+        }
+      }
     }
   `);
 
   const menuItems = data.allContentfulMenuItem.nodes;
+  const bannerImage = getImage(data.contentfulBanner.banner);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -38,14 +46,7 @@ const Layout = ({ children }) => {
           </ul>
         </nav>
         <div className="w-full">
-          <StaticImage
-            src="../images/banner2.jpg"
-            alt="Rubens logotyp"
-            placeholder="blurred"
-            layout="fullWidth"
-            className="md:h-15"
-            imgClassName="object-cover"
-          />
+          <GatsbyImage image={bannerImage} alt="Banner" className="md:h-15" imgClassName="object-cover" />
         </div>
       </header>
 
