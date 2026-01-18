@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import { container } from '../styles/layout.module.css';
 import { StaticImage } from 'gatsby-plugin-image';
 
 const Layout = ({ children }) => {
@@ -40,7 +39,7 @@ const Layout = ({ children }) => {
         </nav>
         <div className="w-full">
           <StaticImage
-            src="../images/banner.jpg"
+            src="../images/banner2.jpg"
             alt="Rubens logotyp"
             placeholder="blurred"
             layout="fullWidth"

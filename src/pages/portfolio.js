@@ -56,6 +56,11 @@ const PortfolioPage = () => {
   );
 };
 
-export const Head = () => <title>Portfolio</title>;
+export const Head = () => (
+  <>
+    <title>Portfolio</title>
+    <meta name="description" content="Portfolio"></meta>
+  </>
+);
 
 export default PortfolioPage;

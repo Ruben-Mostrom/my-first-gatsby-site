@@ -38,5 +38,9 @@ export const query = graphql`
 
 export const Head = ({ data }) => {
   const title = data.contentfulPage.slug === 'portfolio' ? 'Portfolio' : data.contentfulPage.title;
-  return <title>{title}</title>;
+  return (
+    <>
+      <title>{title}</title> <meta name="description" content="Portfolio"></meta>
+    </>
+  );
 };
